@@ -344,13 +344,11 @@ int SpeedLv = 1;
         {
             buy_item = num[1]; //아이템이 4개 이상일 경우에 삭제할 아이템은 1번 인덱스
             idx = 1;
-            
         }
         else
         {
             buy_item = num[0]; //4개 미만인 경우에는 0번 인덱스의 아이템이 삭제될것
             idx = 0;
-            
         }
 
         if (Controller.GetInstance().SpendMoney(itemList[buy_item].itemPrice))
