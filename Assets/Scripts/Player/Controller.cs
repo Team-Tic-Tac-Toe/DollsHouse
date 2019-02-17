@@ -24,9 +24,10 @@ public class Controller : MonoBehaviour {
     /////////////////////////////////////////
     ////            Status                ///
     /////////////////////////////////////////
-    public int player_Money;
+    private int money;
     public static Transform myTrans;
     private Rigidbody2D rb2d;
+    private List<Item> item; //현재 플레이어가 가지고 있는 아이템
 
     //////////////////////////////////////////
     ////			Magic 				//////
@@ -157,7 +158,7 @@ public class Controller : MonoBehaviour {
 	}
 	
 	void Awake(){
-
+        item = new List<Item>(); 
         jumpcount = 2;
         wallsliding = false;
 
@@ -681,5 +682,19 @@ public class Controller : MonoBehaviour {
             LeftKnock = false;
         }
        Knockback(5f, LeftKnock);
+    }
+
+    public void AddItem(Item newItem)
+    {
+        item.Add(newItem);
+    }
+
+    public bool SpendMoney(int price)
+    {
+        if (money < price)
+            return false;
+
+        money -= price;
+        return true;
     }
 }

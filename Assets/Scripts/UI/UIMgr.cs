@@ -18,10 +18,6 @@ public class UIMgr : MonoBehaviour
     public GameObject moneyUi;
     public GameObject healthUi;
 
-    private Vector3 currPosition;
-    private Vector3 endPos;
-    private float startTime;
-    private float distanceLength;
     private Rigidbody2D rigidbody;
     private bool swMove = true;
 
@@ -52,11 +48,6 @@ public class UIMgr : MonoBehaviour
         storeUi.SetActive(false);
         UIcam.SetActive(false);
         moneyUI.GetComponent<Text>().text = tmpMoney.ToString();
-
-        currPosition = transform.position;//시작위치
-        endPos = new Vector3(71, -1, 0);//종료위치
-        startTime = Time.time;
-        distanceLength = Vector3.Distance(currPosition, endPos);
 
         rigidbody = UIcam.GetComponent<Rigidbody2D>();
 

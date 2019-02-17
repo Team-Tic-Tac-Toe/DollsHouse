@@ -353,51 +353,45 @@ int SpeedLv = 1;
             
         }
 
-        buyItemID.Add(itemList[buy_item].itemID);
-        currMoney = currMoney - itemList[buy_item].itemPrice;
-        if (itemList[buy_item].itemType == Item.ItemType.Permanent)
+
+        if (Controller.GetInstance().SpendMoney(itemList[buy_item].itemPrice))
         {
-           
-           
-            goodsIcon[buy_item].SetActive(false);
-            Pos[goods - 1].SetActive(false);
-            num.RemoveAt(idx);
-            goods = goods - 1;
+            Controller.GetInstance().AddItem(itemList[buy_item]);
+
+            if (itemList[buy_item].itemType == Item.ItemType.Permanent)
+            {
+                goodsIcon[buy_item].SetActive(false);
+                Pos[goods - 1].SetActive(false);
+                num.RemoveAt(idx);
+                goods = goods - 1;
+            }
+            else if (itemList[buy_item].itemType == Item.ItemType.Use)
+            {
+                int idx = isContain(itemList[buy_item].itemID);
+                if (idx != -1)
+                {
+
+                    typeUse[idx].itemCount = typeUse[idx].itemCount + 1;
+                    Debug.Log(typeUse[idx].itemCount);
+                }
+                else
+                {
+                    typeUse.Add(new Item(itemList[buy_item].itemID, itemList[buy_item].itemName,
+                         itemList[buy_item].itemDescription, itemList[buy_item].itemPrice,
+                        itemList[buy_item].itemType, itemList[buy_item].itemCount));
+
+                }
+            }
+
+            //위치 재설정
+            //일단 물건의 개수를 하나 줄인다
         }
-        else if (itemList[buy_item].itemType == Item.ItemType.Use)
+        else
         {
-            int idx = isContain(itemList[buy_item].itemID);
-            if (idx!=-1)
-            {
-               
-                typeUse[idx].itemCount = typeUse[idx].itemCount + 1;
-                Debug.Log(typeUse[idx].itemCount);
-            }
-            else
-            {
-                typeUse.Add(new Item(itemList[buy_item].itemID, itemList[buy_item].itemName,
-                     itemList[buy_item].itemDescription, itemList[buy_item].itemPrice,
-                    itemList[buy_item].itemType, itemList[buy_item].itemCount));
-
-            }
-            
-
-          
-
-
-            
-
-
-
+            //팝업 "돈이 모자람"
         }
-
-
-       
-        //위치 재설정
-        //일단 물건의 개수를 하나 줄인다
 
         slotcount++;
-
        
     }
     public int isContain(int id)
