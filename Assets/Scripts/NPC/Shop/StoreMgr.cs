@@ -353,7 +353,6 @@ int SpeedLv = 1;
             
         }
 
-
         if (Controller.GetInstance().SpendMoney(itemList[buy_item].itemPrice))
         {
             Controller.GetInstance().AddItem(itemList[buy_item]);
