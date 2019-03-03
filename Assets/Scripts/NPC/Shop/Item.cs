@@ -42,4 +42,10 @@ public class Item  {
         itemCount = _itemCount;
     }
     //소모품을 위한 생성자
+
+    public virtual void Use()
+    {
+        Debug.Log("Using" + itemName);
+    }
+
 }
