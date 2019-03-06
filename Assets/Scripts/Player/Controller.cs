@@ -17,9 +17,7 @@ public class Controller : MonoBehaviour {
 		}
 		return instance;
 	}
-
-    //리스폰 장소
-    //public Transform respawnloc;
+    
 
     /////////////////////////////////////////
     ////            Status                ///
@@ -123,10 +121,10 @@ public class Controller : MonoBehaviour {
     ///////////////////////////////////////
     private bool dash = false;
 	private int dashnum =0; // 대쉬 가능 횟수
-	public float dashSpeed;
-	public float dashCd;
+	public float dashSpeed=25.0f;
+	public float dashCd=1;
 	private float dashTimer = 0;
-    public float dashdistance;
+    public float dashdistance=0.3f;
     private bool candash = true; // 대쉬 도중 컬라이더랑 부딪히면 false 됨
 
     /////////////////////////////////////
@@ -138,7 +136,7 @@ public class Controller : MonoBehaviour {
     public int jumpcount;
     private bool jumpdown = false;
 	
-    public float jumpForce;
+    public float jumpForce= 9;
     private bool hanginwall = false;
 
     /////////////////////////////////
@@ -161,6 +159,34 @@ public class Controller : MonoBehaviour {
         jumpcount = 2;
         wallsliding = false;
 
+        //public 변수들 find로 다 넣어주기
+        anim = GameObject.Find("Player/PlayerAnimator").GetComponent<Animator>();
+        MagicCircle = GameObject.Find("Player/MagicCircle");
+        Magic_A = GameObject.Find("Player/MagicCircle/Magic_A");
+        Magic_S = GameObject.Find("Player/MagicCircle/Magic_S");
+        Magic_D = GameObject.Find("Player/MagicCircle/Magic_D");
+        Idle = GameObject.Find("Player/PlayerColliderIdle");
+        Crouch = GameObject.Find("Player/PlayerColliderCrouch");
+        hitboxlv1 = GameObject.Find("Player/Attack/hitboxLv.1").GetComponent<Collider2D>();
+        hitboxlv2 = GameObject.Find("Player/Attack/hitboxLv.2").GetComponent<Collider2D>();
+        hitboxlv3 = GameObject.Find("Player/Attack/hitboxLv.3").GetComponent<Collider2D>();
+        hitboxDownlv1 = GameObject.Find("Player/Attack/hitboxDownLv.1").GetComponent<Collider2D>();
+        hitboxDownlv2 = GameObject.Find("Player/Attack/hitboxDownLv.2").GetComponent<Collider2D>();
+        hitboxDownlv3 = GameObject.Find("Player/Attack/hitboxDownLv.3").GetComponent<Collider2D>();
+        hitboxUplv1 = GameObject.Find("Player/Attack/hitboxUpLv.1").GetComponent<Collider2D>();
+        hitboxUplv2 = GameObject.Find("Player/Attack/hitboxUpLv.2").GetComponent<Collider2D>();
+        hitboxUplv3 = GameObject.Find("Player/Attack/hitboxUpLv.3").GetComponent<Collider2D>();
+        attackanimlv1 = GameObject.Find("Player/Attack/hitboxLv.1/slashlv1");
+        attackanimlv2 = GameObject.Find("Player/Attack/hitboxLv.2/slashlv2");
+        attackanimlv3 = GameObject.Find("Player/Attack/hitboxLv.3/slashlv3");
+        attackDownanimlv1 = GameObject.Find("Player/Attack/hitboxDownLv.1/slashDownlv1");
+        attackDownanimlv2 = GameObject.Find("Player/Attack/hitboxDownLv.2/slashDownlv2");
+        attackDownanimlv3 = GameObject.Find("Player/Attack/hitboxDownLv.3/slashDownlv3");
+        attackUpanimlv1 = GameObject.Find("Player/Attack/hitboxUpLv.1/slashUplv1");
+        attackUpanimlv2 = GameObject.Find("Player/Attack/hitboxUpLv.2/slashUplv2");
+        attackUpanimlv3 = GameObject.Find("Player/Attack/hitboxUpLv.3/slashUplv3");
+   
+
         //anim = GetComponent<Animator>();
         PlayerIsDead = false;
 		MagicCircle.SetActive(false);
@@ -168,7 +194,6 @@ public class Controller : MonoBehaviour {
 		Magic_S.SetActive(false);
 		Magic_D.SetActive(false);
 
-		//instance = this;
 		rb2d = GetComponent<Rigidbody2D>();
 		myTrans = this.transform;
         //myTrans.position = new Vector3((PlayerPrefs.GetFloat("characterrespawnx_CharacterSlot" + gameloadslot.slotnum)), (PlayerPrefs.GetFloat("characterrespawny_CharacterSlot" + gameloadslot.slotnum)), (PlayerPrefs.GetFloat("characterrespawnz_CharacterSlot" + gameloadslot.slotnum)));
@@ -316,7 +341,7 @@ public class Controller : MonoBehaviour {
 			Magic_D.SetActive(false);
 
             if (AisOn && !SisOn && !DisOn){
-                anim.SetTrigger("skillA");
+                //anim.SetTrigger("skillA");
                 if (lookRight)
                 {
                     Debug.Log("A Activate");
