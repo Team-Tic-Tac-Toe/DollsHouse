@@ -45,6 +45,17 @@ public class Item  {
 
     public virtual void Use()
     {
+        
+        if(itemName == "item5") //아이템 = 영혼나무의 수액일 경우 생명 모두 채움
+        {
+
+            //HealthCtrl Health = GameObject.Find("health").GetComponent<HealthCtrl>();
+            //Health.health = 8;
+            HealthCtrl.healthinstance.health = 8;
+            Debug.Log("health = 8");
+
+        }
+
         Debug.Log("Using" + itemName);
     }
 
