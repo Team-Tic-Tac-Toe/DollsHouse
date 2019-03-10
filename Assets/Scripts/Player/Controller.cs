@@ -163,7 +163,7 @@ public class Controller : MonoBehaviour {
 
         //anim = GetComponent<Animator>();
         PlayerIsDead = false;
-		MagicCircle.SetActive(false);
+		//MagicCircle.SetActive(false);
 		Magic_A.SetActive(false);
 		Magic_S.SetActive(false);
 		Magic_D.SetActive(false);
