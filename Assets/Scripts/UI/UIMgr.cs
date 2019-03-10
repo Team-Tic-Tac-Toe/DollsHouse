@@ -18,7 +18,7 @@ public class UIMgr : MonoBehaviour
     public GameObject moneyUi;
     public GameObject healthUi;
 
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
     private bool swMove = true;
 
     public Text moneyUI;

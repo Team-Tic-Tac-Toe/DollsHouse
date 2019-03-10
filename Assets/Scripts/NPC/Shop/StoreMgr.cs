@@ -25,7 +25,7 @@ int SpeedLv = 1;
     public Vector2[] goodsPos; //아이템의 위치를 담는 벡터 배열
     public GameObject[] goodsIcon; //아이템의 Icon을 담는 배열 
 
-    int currentPoint;
+    
     int r_count = 0;
     int l_count = 0;
     int goods = 3;
@@ -63,8 +63,6 @@ int SpeedLv = 1;
     private void Start()
     {
         
-
-        currentPoint = 0;
 
 
         //아이템의 이름 설명 저장합니다//

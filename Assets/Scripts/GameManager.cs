@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public Scene[] scene;
     public bool isPlaying = true;
 
-    int curScene = 0;
+    
     Vector2 entrancePos;
 
     public string[] sceneName;
